@@ -18,6 +18,7 @@
         <%= link_to 'Sign In', new_user_session_path %>
       <% else %>
         <%= link_to 'Feed', posts_path %>
+        <%= link_to 'MyFeed', myfeed_user_path(current_user.id) %>
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
       <% end %>
     </header>
