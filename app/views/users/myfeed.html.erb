@@ -1,3 +1,33 @@
-<% @userposts.each do |p| %>
-  <%= p.id %>
+<h1>Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userposts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.body %></td>
+        <td><%= post.user.username %></td>
+        <td><%= link_to 'Show', post %></td>
+        <% if post.user_id == current_user.id or current_user.admin? %>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user and current_user.id == @userid %>
+  <%= link_to 'New Post', new_post_path %>
 <% end %>
