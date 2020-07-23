@@ -29,6 +29,8 @@
         <%= link_to 'Feed', posts_path %>
         <%= link_to 'MyFeed', myfeed_user_path(current_user.id) %>
         <%= link_to 'Friends', friendships_path %>
+        <%= link_to 'MyFriends', myfriends_user_path(current_user.id) %>
+        <%= link_to 'all_users', pages_all_users_path %>
         <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
       <% end %>
     </header>

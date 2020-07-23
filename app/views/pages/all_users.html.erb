@@ -1,0 +1,17 @@
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% User.all.each do |u| %>
+      <tr>
+        <td><%= u.username %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
