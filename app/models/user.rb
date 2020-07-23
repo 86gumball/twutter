@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :posts
+  has_many :friendships
+  has_many :friends, through: :friendships
 
   def username
     self.email.split('@')[0]
