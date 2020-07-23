@@ -1,6 +1,8 @@
 class FriendshipsController < ApplicationController
   def index
     @friendships = Friendship.all
+    @all_users = User.all.compact
+    @all_users.delete(current_user)
   end
 
   def create
@@ -18,6 +20,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
+    @friendship = current_user.friendships.find(user_id: current_user.id, friend_id: params[:friend_id])
     @friendship.destroy
     respond_to do |format|
       format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
