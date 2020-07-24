@@ -7,22 +7,17 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = Friendship.create(user_id: params[:user_id], friend_id: params[:friend_id])
-
-    respond_to do |format|
-      if @friendship.save
-        format.html { redirect_to friendships_path, notice: 'Friendship was successfully created.' }
-      else
-        format.html { redirect_to friendships_path, notice: 'Friendship failed to be created.' }
-      end
+    if @friendship.save
+      redirect_to friendships_path, notice: 'Friendship was successfully created.'
+    else
+      redirect_to friendships_path, notice: 'Friendship failed to be created.'
     end
   end
 
   def destroy
     @friendship = Friendship.find(params[:id]) # returns a list/array
     @friendship.destroy
-    respond_to do |format|
-      format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
-    end
+    redirect_to friendships_url, notice: 'Friendship was successfully destroyed.'
   end
 
   private
