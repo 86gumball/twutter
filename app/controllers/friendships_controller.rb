@@ -6,25 +6,22 @@ class FriendshipsController < ApplicationController
   end
 
   def create
-    @friendship = Friendship.new(friendship_params)
+    @friendship = Friendship.create(user_id: params[:user_id], friend_id: params[:friend_id])
 
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to @friendship, notice: 'Friendship was successfully created.' }
-        format.json { render :show, status: :created, location: @friendship }
+        format.html { redirect_to myfriends_user_path(params[:user_id]), notice: 'Friendship was successfully created.' }
       else
-        format.html { render :new }
-        format.json { render json: @friendship.errors, status: :unprocessable_entity }
+        format.html { redirect_to myfriends_user_path(params[:user_id]), notice: 'Friendship failed to be created.' }
       end
     end
   end
 
   def destroy
-    @friendship = current_user.friendships.find(user_id: current_user.id, friend_id: params[:friend_id])
+    @friendship = Friendship.find(params[:id]) # returns a list/array
     @friendship.destroy
     respond_to do |format|
       format.html { redirect_to friendships_url, notice: 'Friendship was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

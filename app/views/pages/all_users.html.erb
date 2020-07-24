@@ -10,6 +10,9 @@
     <% User.all.each do |u| %>
       <tr>
         <td><%= u.username %></td>
+        <% unless current_user.is_friend_with? u.id or current_user == u %>
+          <td><%= link_to 'Add friend', friendships_path(user_id: current_user.id, friend_id: u.id), method: :post %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

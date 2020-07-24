@@ -14,7 +14,7 @@
       <% current_user.friendships.each do |fship| %>
         <tr>
           <td><%= fship.friend.username %></td>
-          <td><%= link_to 'Destroy', friendship_path(id: fship.friend_id) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Destroy', friendship_path(fship.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
