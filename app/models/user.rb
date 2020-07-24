@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :friends, through: :friendships
 
   def username
-    self.email.split('@')[0]
+    self.email.split('@').first
+  end
+
+  def is_friend_with?(friend_id)
+    Friendship.exists?(user_id: id, friend_id: friend_id)
   end
 end

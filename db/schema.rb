@@ -25,9 +25,10 @@ ActiveRecord::Schema.define(version: 2020_07_23_120019) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "friendships", id: false, force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "friend_id", null: false
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
