@@ -15,7 +15,7 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    @friendship = Friendship.find(params[:id]) # returns a list/array
+    @friendship = Friendship.find(params[:id])
     @friendship.destroy
     redirect_to friendships_url, notice: 'Friendship was successfully destroyed.'
   end
