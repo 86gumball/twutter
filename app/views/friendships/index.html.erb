@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Friendships</h1>
+  <% unless current_user.friendships.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% current_user.friendships.each do |fship| %>
+        <tr>
+          <td><%= fship.friend.username %></td>
+          <td><%= link_to 'Destroy', friendship_path(id: fship.friend_id) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+<% else %>
+  <%= "It looks like you don't have any friends, why don't you add some?" %>
+<% end %>
+
+<h2>[Debug]</h2>
+<%= "This table is for debugging purposes only" %>
+<table> <thead> <tr>
+      <th>User</th>
+      <th>Friend</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friendships.each do |friendship| %>
+      <tr>
+        <td><%= User.find(friendship.user_id).username %></td>
+        <td><%= User.find(friendship.friend_id).username %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
