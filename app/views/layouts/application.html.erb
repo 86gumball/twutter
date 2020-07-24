@@ -11,15 +11,6 @@
 
   <body>
     <!-- TODO: Move the header to a helper function)-->
-
-    <!-- TODO: Remove this block (eventually) -->
-    <strong>
-      <% if current_user %>
-        <%= "[DEBUG] You are currently signed in as: #{current_user.username}" %>
-      <% end %>
-    </strong>
-    <!------------------------------------------>
-
     <header>
       <%= link_to 'Home', '/' %>
       <% unless current_user %>
