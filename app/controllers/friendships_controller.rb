@@ -10,9 +10,9 @@ class FriendshipsController < ApplicationController
 
     respond_to do |format|
       if @friendship.save
-        format.html { redirect_to myfriends_user_path(params[:user_id]), notice: 'Friendship was successfully created.' }
+        format.html { redirect_to friendships_path, notice: 'Friendship was successfully created.' }
       else
-        format.html { redirect_to myfriends_user_path(params[:user_id]), notice: 'Friendship failed to be created.' }
+        format.html { redirect_to friendships_path, notice: 'Friendship failed to be created.' }
       end
     end
   end
